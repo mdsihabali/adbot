@@ -3,195 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reward Task Example</title>
+    <title>Rewarded Interstitial Ad Example</title>
+    <!-- Monetag script for rewarded interstitial -->
     <script src='//niphaumeenses.net/vignette.min.js' data-zone='8539225' data-sdk='show_8539225'></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Basic styling */
         body {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #1a1a1a;
-            color: #ffd700;
-            padding: 20px;
-            box-sizing: border-box;
-            padding-bottom: 90px;
-        }
-        .user-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            width: 90%;
-            max-width: 400px;
-            background: #333333;
-            border: 2px solid #ffd700;
-            border-radius: 15px;
-            margin-top: 30px;
-            color: #ffd700;
-            box-sizing: border-box;
-        }
-        .user-info {
-            display: flex;
-            align-items: center;
-            padding-right: 10px;
-        }
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 15px;
-            border: 2px solid #ffd700;
-        }
-        .user-details h2 {
-            margin: 0;
-            font-size: 18px;
-        }
-        .user-details p {
-            margin: 0;
-        }
-        .balance-info {
-            text-align: right;
+            background-color: #282c34;
+            color: #ffffff;
         }
         .ad-container {
             text-align: center;
             padding: 30px;
-            background: #333333;
-            border: 2px solid #ffd700;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 400px;
-            color: #ffd700;
-            margin: 250px auto 20px;
-            box-sizing: border-box;
+            background: #3b3f47;
+            border-radius: 12px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            animation: fadeIn 1s ease;
         }
         .ad-container h1 {
             margin-bottom: 10px;
-            color: #ffd700;
-            font-size: 1.6rem;
+            font-size: 24px;
+            color: #00ff99;
         }
-        .reward-button {
-            padding: 15px 30px;
+        .reward-counter {
             font-size: 18px;
-            cursor: pointer;
-            color: #1a1a1a;
-            background-color: #ffd700;
+            margin-bottom: 20px;
+            color: #ffeb3b;
+        }
+        .ad-container button {
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
             border: none;
             border-radius: 8px;
-            transition: background 0.3s, transform 0.3s;
-            box-shadow: 0px 5px 15px rgba(255, 215, 0, 0.4);
-            font-weight: bold;
-            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.4);
         }
-        .reward-button:hover {
-            background-color: #e5c100;
-            transform: scale(1.05);
+        .ad-container button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
         }
-        .bottom-nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 600px;
-            background: #333333;
-            padding: 15px 0;
-            color: #ffd700;
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
-            box-sizing: border-box;
+        .ad-container button:active {
+            transform: scale(0.98);
         }
-        .bottom-nav a {
-            text-align: center;
-            color: #ffd700;
-            font-size: 1.2em;
-            text-decoration: none;
-            flex: 1;
-            transition: color 0.3s;
-        }
-        .bottom-nav a:hover {
-            color: #fff700;
-        }
-        .bottom-nav i {
-            display: block;
-            font-size: 1.5em;
-            margin-bottom: 5px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="user-card">
-        <div class="user-info">
-            <img src="https://via.placeholder.com/50" alt="User Avatar" class="user-avatar">
-            <div class="user-details">
-                <h2 id="userName">Your Name</h2>
-                <p>Number: <span id="userNumber">000000</span></p>
-            </div>
-        </div>
-        <div class="balance-info">
-            <p>Points: <span id="userPoints">0</span></p>
-            <p>Balance: $<span id="userBalance">0.00</span></p>
-        </div>
-    </div>
-
     <div class="ad-container">
-        <h1>Complete Reward Task</h1>
-        <button class="reward-button" onclick="showRewardedAd()">Reward Task</button>
-    </div>
-
-    <!-- Bottom Navigation Bar -->
-    <div class="bottom-nav">
-        <a href="#"><i class="fas fa-home"></i>Home</a>
-        <a href="#"><i class="fas fa-share-alt"></i>Share</a>
-        <a href="https://t.me/@AppDeveloper99" target="_blank"><i class="fas fa-user-tie"></i>Developer</a>
+        <h1>Earn Rewards</h1>
+        <p class="reward-counter">Rewards Earned: <span id="reward-count">0</span></p>
+        <button onclick="showRewardedAd()">Watch Ad for Reward</button>
     </div>
 
     <script>
-        let points = 0;
-        let balance = 0;
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const savedName = localStorage.getItem('userName');
-            const savedNumber = localStorage.getItem('userNumber');
-
-            if (savedName && savedNumber) {
-                document.getElementById('userName').textContent = savedName;
-                document.getElementById('userNumber').textContent = savedNumber;
-            }
-
-            // Display saved points and balance
-            points = parseInt(localStorage.getItem('userPoints') || '0');
-            balance = parseFloat(localStorage.getItem('userBalance') || '0.00');
-            updateBalance();
-        });
+        let rewardCount = 0;
 
         function showRewardedAd() {
+            // Check if the ad script function is available
             if (typeof show_8539225 === 'function') {
                 show_8539225().then(() => {
-                    // Ad watched successfully
-                    points += 10;
-                    balance += 1.00;
-                    updateBalance();
-                    alert('You watched the ad and earned 10 points and $1.00!');
-                }).catch((err) => {
-                    console.error('Ad display failed or was skipped:', err);
-                    alert('Ad was not fully watched. No reward granted.');
+                    // Increment the reward count and update display
+                    rewardCount += 1;
+                    document.getElementById('reward-count').textContent = rewardCount;
+                    alert('You have earned a reward!');
+                }).catch(error => {
+                    console.error('Ad failed to load or display:', error);
                 });
             } else {
-                console.error('Ad function show_8539225 is not available.');
-                alert('Ad functionality is not available at the moment.');
+                console.error('Ad script is not loaded or available.');
             }
-        }
-
-        function updateBalance() {
-            document.getElementById('userPoints').textContent = points;
-            document.getElementById('userBalance').textContent = balance.toFixed(2);
-
-            localStorage.setItem('userPoints', points);
-            localStorage.setItem('userBalance', balance.toFixed(2));
         }
     </script>
 </body>
