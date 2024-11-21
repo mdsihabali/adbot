@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneTag Earning Bot</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/90tMtH8q/developer-amimran-2.png"/>
+    <script src='//niphaumeenses.net/vignette.min.js' data-zone='8539261' data-sdk='show_8539261'></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+        }
+        .app-container {
+            text-align: center;
+            background: linear-gradient(145deg, #ffffff, #e6e8eb);
+            padding: 40px;
+            border-radius: 15px;
+            width: 320px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        .developer-label {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #555;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        .ad-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 17px;
+            color: #fff;
+            margin-top: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .blue-button { background-color: #007bff; }
+        .green-button { background-color: #28a745; }
+        .yellow-button { background-color: #ffc107; }
+        .ad-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .ad-button:active {
+            transform: scale(0.97);
+        }
+        .withdraw-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff5733;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <h2>Watch Ads and Earn Rewards!</h2>
+        <div class="developer-label">DEVELOPER BY A M IMRAN</div>
+        <button class="ad-button blue-button" onclick="showAd(1)">Show Ad 1</button>
+        <button class="ad-button green-button" onclick="autoShowAds()">Show Auto Ads</button>
+        <p id="ad-count">Ads Watched: 0</p>
+        <p id="task-status">Task 1 Progress: 0/10</p>
+    </div>
+
+    <script>
+        let adCount = 0;
+        let task1Progress = 0;
+        let autoAdTimer;
+        
+        function showAd(buttonId) {
+            // Simulate showing ad
+            if (typeof show_8539261 === 'function') {
+                show_8539261().then(() => {
+                    adCount++;
+                    task1Progress++;
+                    document.getElementById('ad-count').innerText = 'Ads Watched: ' + adCount;
+                    document.getElementById('task-status').innerText = 'Task 1 Progress: ' + task1Progress + '/10';
+
+                    if (task1Progress >= 10) {
+                        alert('You have completed Task 1! You earned 10 units.');
+                        task1Progress = 0;
+                        document.getElementById('task-status').innerText = 'Task 1 Progress: 0/10';
+                    }
+                }).catch(error => {
+                    console.error('Ad failed to load or display:', error);
+                });
+            }
+        }
+
+        function autoShowAds() {
+            // Auto Show Ads every second
+            let autoAdCount = 0;
+            autoAdTimer = setInterval(() => {
+                if (typeof show_8539261 === 'function') {
+                    show_8539261().then(() => {
+                        autoAdCount++;
+                        adCount++;
+                        document.getElementById('ad-count').innerText = 'Ads Watched: ' + adCount;
+                    }).catch(error => {
+                        console.error('Ad failed to load or display:', error);
+                    });
+                }
+            }, 1000);
+        }
+
+        function withdraw() {
+            // Logic for withdrawal
+            if (adCount >= 100) {
+                alert('You can withdraw via Bkash or Nagad now!');
+                // Simulate withdrawal option
+            } else {
+                alert('You need to watch more ads before you can withdraw.');
+            }
+        }
+             // Disable right-click functionality
+    document.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+        alert("Buy This Code From Developer");
+        window.location.href = "https://t.me/mdsihabali";
+    });
+    </script>
+</body>
+</html>
